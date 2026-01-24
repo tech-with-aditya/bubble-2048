@@ -1,0 +1,102 @@
+.tile {
+  position: absolute;
+  width: calc(25% - 10px);
+  height: calc(25% - 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 50%;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 4px 8px rgba(255, 255, 255, 0.3);
+  transform: translate(
+    calc(var(--tile-x) * (100% + 13.33px) + 5px),
+    calc(var(--tile-y) * (100% + 13.33px) + 5px)
+  );
+  transition: transform 150ms ease-in-out;
+  z-index: 10;
+  user-select: none;
+}
+
+.tile::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 25%;
+  height: 20%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.6) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+
+.tile-new {
+  animation: tile-appear 200ms ease-out;
+}
+
+.tile-merged {
+  animation: tile-merge 200ms ease-out;
+  z-index: 20;
+}
+
+.tile-moving {
+  animation: tile-slide 150ms ease-in-out;
+}
+
+@keyframes tile-appear {
+  0% {
+    opacity: 0;
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1);
+  }
+}
+
+@keyframes tile-merge {
+  0% {
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1);
+  }
+  50% {
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1.2);
+  }
+  100% {
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1);
+  }
+}
+
+@keyframes tile-slide {
+  0% {
+    transform: translate(
+      calc(var(--prev-x) * (100% + 13.33px) + 5px),
+      calc(var(--prev-y) * (100% + 13.33px) + 5px)
+    );
+  }
+  100% {
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    );
+  }
+}

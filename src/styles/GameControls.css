@@ -1,0 +1,36 @@
+.game-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.new-game-button {
+  background: linear-gradient(180deg, #4fc3f7 0%, #0288d1 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow:
+    0 4px 12px rgba(2, 136, 209, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  transition: all 150ms ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.new-game-button:hover {
+  background: linear-gradient(180deg, #81d4fa 0%, #039be5 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 16px rgba(2, 136, 209, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.new-game-button:active {
+  transform: translateY(0);
+  box-shadow:
+    0 2px 8px rgba(2, 136, 209, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
