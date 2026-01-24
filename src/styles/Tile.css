@@ -17,7 +17,7 @@
   );
   z-index: 10;
   user-select: none;
-  animation: bubble-wobble 3s ease-in-out infinite;
+  animation: bubble-wobble 6s ease-in-out infinite;
   animation-delay: var(--wobble-delay, 0s);
 }
 
