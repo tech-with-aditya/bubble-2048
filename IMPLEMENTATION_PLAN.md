@@ -3,9 +3,9 @@
 ## Phase 1: Project Setup & Foundation
 
 ### 1.1 Initialize Project Structure
-- [ ] Create Vite + React + TypeScript project
-- [ ] Configure GitHub Pages deployment in `vite.config.ts`
-- [ ] Set up basic folder structure:
+- [x] Create Vite + React + TypeScript project
+- [x] Configure GitHub Pages deployment in `vite.config.ts`
+- [x] Set up basic folder structure:
   ```
   src/
     components/     # React components
@@ -15,65 +15,65 @@
     styles/         # CSS/styling
     assets/         # Images, fonts
   ```
-- [ ] Configure base path for GitHub Pages deployment
+- [x] Configure base path for GitHub Pages deployment
 
 ### 1.2 Core Type Definitions
-- [ ] Define `Tile` type (id, value, position)
-- [ ] Define `Grid` type (4x4 array structure)
-- [ ] Define `GameState` type (grid, score, bestScore, gameStatus)
-- [ ] Define `Direction` enum (UP, DOWN, LEFT, RIGHT)
-- [ ] Define `GameStatus` enum (PLAYING, WON, LOST)
+- [x] Define `Tile` type (id, value, position)
+- [x] Define `Grid` type (4x4 array structure)
+- [x] Define `GameState` type (grid, score, bestScore, gameStatus)
+- [x] Define `Direction` enum (UP, DOWN, LEFT, RIGHT)
+- [x] Define `GameStatus` enum (PLAYING, WON, LOST)
 
 ---
 
 ## Phase 2: Game Logic Implementation
 
 ### 2.1 Grid Management Utilities
-- [ ] `initializeGrid()` - Create empty 4x4 grid
-- [ ] `addRandomTile()` - Spawn new tile (2 or 4) in random empty cell
-- [ ] `getEmptyCells()` - Return array of empty cell positions
-- [ ] `cloneGrid()` - Deep copy grid for state management
+- [x] `initializeGrid()` - Create empty 4x4 grid
+- [x] `addRandomTile()` - Spawn new tile (2 or 4) in random empty cell
+- [x] `getEmptyCells()` - Return array of empty cell positions
+- [x] `cloneGrid()` - Deep copy grid for state management
 
 ### 2.2 Core Movement Logic
-- [ ] `moveTiles(grid, direction)` - Move tiles in specified direction
-  - [ ] Implement slide logic (move to furthest empty position)
-  - [ ] Implement merge logic (combine same values)
-  - [ ] Return new grid and points earned
-- [ ] `canMove(grid)` - Check if any valid moves exist (game over detection)
-- [ ] `hasWon(grid)` - Check if 2048 tile exists
+- [x] `moveTiles(grid, direction)` - Move tiles in specified direction
+  - [x] Implement slide logic (move to furthest empty position)
+  - [x] Implement merge logic (combine same values)
+  - [x] Return new grid and points earned
+- [x] `canMove(grid)` - Check if any valid moves exist (game over detection)
+- [x] `hasWon(grid)` - Check if 2048 tile exists
 
 ### 2.3 Unique Bubble Mechanic
-- [ ] `processBubbleMove(grid)` - Execute the two-step movement:
+- [x] `processBubbleMove(grid)` - Execute the two-step movement:
   1. Player's directional move (LEFT/RIGHT/DOWN/UP)
   2. Automatic upward move (bubble rising effect)
-- [ ] Return combined results (final grid, total score from both moves)
-- [ ] Handle animation coordination between the two movements
+- [x] Return combined results (final grid, total score from both moves)
+- [x] Handle animation coordination between the two movements
 
 ---
 
 ## Phase 3: React Component Architecture
 
 ### 3.1 Game State Management
-- [ ] Create `useGameState` hook:
-  - [ ] Manage grid state
-  - [ ] Manage score and best score
-  - [ ] Manage game status (playing/won/lost)
-  - [ ] Handle localStorage for best score persistence
-  - [ ] Expose game actions (move, newGame, restart)
+- [x] Create `useGameState` hook:
+  - [x] Manage grid state
+  - [x] Manage score and best score
+  - [x] Manage game status (playing/won/lost)
+  - [x] Handle localStorage for best score persistence
+  - [x] Expose game actions (move, newGame, restart)
 
 ### 3.2 Input Handling
-- [ ] Create `useSwipeDetection` hook:
-  - [ ] Detect touch swipes on mobile
-  - [ ] Detect keyboard arrow keys on desktop
-  - [ ] Prevent moves during animations
-  - [ ] Return direction of swipe/keypress
+- [x] Create `useInputHandler` hook:
+  - [x] Detect touch swipes on mobile
+  - [x] Detect keyboard arrow keys on desktop
+  - [x] Detect mouse drag on desktop
+  - [x] Prevent moves during animations
+  - [x] Return direction of swipe/keypress
 
 ### 3.3 Animation System
-- [ ] Create `useAnimation` hook:
-  - [ ] Track animation state (isAnimating)
-  - [ ] Coordinate tile movement animations
-  - [ ] Coordinate merge animations
-  - [ ] Handle sequential animations (player move → bubble move)
+- [x] Animation state tracking (isAnimating) - built into useGameState
+- [x] Coordinate tile movement animations - CSS transitions
+- [x] Coordinate merge animations - CSS animations
+- [x] Handle sequential animations (player move → bubble move)
 
 ### 3.4 Component Hierarchy
 ```
@@ -91,61 +91,61 @@
 ```
 
 ### Component Details:
-- [ ] `App.tsx` - Root component, global state
-- [ ] `GameContainer.tsx` - Main game wrapper, handles input
-- [ ] `Grid.tsx` - 4x4 grid layout, bubble styling
-- [ ] `Tile.tsx` - Individual tile with value, animations
-- [ ] `ScoreBoard.tsx` - Display current and best score
-- [ ] `GameControls.tsx` - New game button, instructions
-- [ ] `GameOverModal.tsx` - Game over overlay
-- [ ] `WinModal.tsx` - Victory overlay (with continue option)
+- [x] `App.tsx` - Root component, global state
+- [x] `GameContainer.tsx` - Main game wrapper, handles input
+- [x] `Grid.tsx` - 4x4 grid layout, bubble styling
+- [x] `Tile.tsx` - Individual tile with value, animations
+- [x] `ScoreBoard.tsx` - Display current and best score
+- [x] `GameControls.tsx` - New game button, instructions
+- [x] `GameOverModal.tsx` - Game over overlay
+- [x] `WinModal.tsx` - Victory overlay (with continue option)
 
 ---
 
 ## Phase 4: Styling & Theme
 
 ### 4.1 Ocean Theme Design
-- [ ] Define color palette:
+- [x] Define color palette:
   - Background: Deep blue gradient
   - Grid: Translucent bubble containers
   - Tiles: Gradient from light blue → teal → purple based on value
   - Text: White/light colors for contrast
-- [ ] Design bubble-shaped cells:
+- [x] Design bubble-shaped cells:
   - Circular or rounded square with glossy effect
   - Subtle shine/reflection on top
   - Box shadow for depth
 
 ### 4.2 Animations & Transitions
-- [ ] Tile movement transitions (smooth slide)
-- [ ] Tile merge animations (scale up/down, glow)
-- [ ] Tile spawn animations (fade in, scale from 0)
+- [x] Tile movement transitions (smooth slide)
+- [x] Tile merge animations (scale up/down, glow)
+- [x] Tile spawn animations (fade in, scale from 0)
 - [ ] Score increment animations (number fly-up)
 - [ ] Bubble rising effect visual cue
 
 ### 4.3 Responsive Design
-- [ ] Mobile-first approach (320px - 768px)
-- [ ] Tablet layout (768px - 1024px)
-- [ ] Desktop layout (1024px+)
-- [ ] Ensure touch targets are large enough (min 44x44px)
+- [x] Mobile-first approach (320px - 768px)
+- [x] Tablet layout (768px - 1024px)
+- [x] Desktop layout (1024px+)
+- [x] Ensure touch targets are large enough (min 44x44px)
 
 ---
 
 ## Phase 5: Game Features & Polish
 
 ### 5.1 Core Features
-- [ ] New Game button
-- [ ] Score tracking and display
-- [ ] Best score persistence (localStorage)
-- [ ] Game over detection and modal
-- [ ] Win condition (2048) detection and modal
-- [ ] Continue playing after winning
+- [x] New Game button
+- [x] Score tracking and display
+- [x] Best score persistence (localStorage)
+- [x] Game over detection and modal
+- [x] Win condition (2048) detection and modal
+- [x] Continue playing after winning
 
 ### 5.2 Enhanced UX
 - [ ] Loading state on game initialization
-- [ ] Smooth animations for all interactions
+- [x] Smooth animations for all interactions
 - [ ] Visual feedback for invalid moves
 - [ ] Instructions/tutorial overlay (first time users)
-- [ ] Keyboard and touch input support
+- [x] Keyboard and touch input support
 
 ### 5.3 Optional Features (Nice-to-Have)
 - [ ] Undo last move
@@ -160,9 +160,9 @@
 ## Phase 6: Testing & Quality Assurance
 
 ### 6.1 Functionality Testing
-- [ ] Test all movement directions
-- [ ] Test merge logic (same values combine correctly)
-- [ ] Test bubble mechanic (automatic upward movement)
+- [x] Test all movement directions
+- [x] Test merge logic (same values combine correctly)
+- [x] Test bubble mechanic (automatic upward movement)
 - [ ] Test win condition (reaching 2048)
 - [ ] Test game over condition (no moves available)
 - [ ] Test edge cases (corner merges, multiple merges in one move)
@@ -183,14 +183,14 @@
 ## Phase 7: Deployment
 
 ### 7.1 Production Build
-- [ ] Run `npm run build`
+- [x] Run `npm run build`
 - [ ] Test production build locally (`npm run preview`)
-- [ ] Verify assets load correctly with GitHub Pages base path
+- [x] Verify assets load correctly with GitHub Pages base path
 
 ### 7.2 GitHub Pages Setup
-- [ ] Create GitHub repository
-- [ ] Configure GitHub Pages (gh-pages branch or /docs folder)
-- [ ] Set up automated deployment (GitHub Actions)
+- [x] Create GitHub repository
+- [x] Configure GitHub Pages (gh-pages branch or /docs folder)
+- [x] Set up automated deployment (GitHub Actions)
 - [ ] Verify live site works correctly
 
 ### 7.3 Documentation
@@ -235,29 +235,29 @@
 
 ## Development Sequence (Suggested Order)
 
-1. **Setup** → Initialize Vite project with TypeScript
-2. **Types** → Define all TypeScript interfaces
-3. **Logic** → Implement game logic utilities (test with console logs)
-4. **Components** → Build basic UI structure (no styling)
-5. **State** → Wire up game state with React hooks
-6. **Input** → Add keyboard and swipe controls
-7. **Styling** → Apply ocean theme and bubble design
-8. **Animations** → Add movement and merge transitions
-9. **Polish** → Add modals, instructions, edge case handling
-10. **Deploy** → Build and publish to GitHub Pages
+1. **Setup** → Initialize Vite project with TypeScript ✅
+2. **Types** → Define all TypeScript interfaces ✅
+3. **Logic** → Implement game logic utilities (test with console logs) ✅
+4. **Components** → Build basic UI structure (no styling) ✅
+5. **State** → Wire up game state with React hooks ✅
+6. **Input** → Add keyboard and swipe controls ✅
+7. **Styling** → Apply ocean theme and bubble design ✅
+8. **Animations** → Add movement and merge transitions ✅
+9. **Polish** → Add modals, instructions, edge case handling ✅
+10. **Deploy** → Build and publish to GitHub Pages ✅
 
 ---
 
 ## Success Criteria
 
-- [ ] Game is fully playable on desktop and mobile
-- [ ] Bubble mechanic (double-movement) works correctly
-- [ ] Ocean theme is visually appealing
-- [ ] Animations are smooth (no jank)
-- [ ] Game persists best score
-- [ ] Successfully deployed to GitHub Pages
-- [ ] Code is clean and well-organized
-- [ ] Minimal dependencies used
+- [x] Game is fully playable on desktop and mobile
+- [x] Bubble mechanic (double-movement) works correctly
+- [x] Ocean theme is visually appealing
+- [x] Animations are smooth (no jank)
+- [x] Game persists best score
+- [x] Successfully deployed to GitHub Pages
+- [x] Code is clean and well-organized
+- [x] Minimal dependencies used
 
 ---
 
