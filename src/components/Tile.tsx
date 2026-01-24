@@ -28,6 +28,11 @@ function getTileStyle(value: number) {
   };
 }
 
+function getTileBackground(value: number): string {
+  const colors = TILE_COLORS[value] || { background: '#9c27b0' };
+  return colors.background;
+}
+
 function getFontSize(value: number): string {
   if (value < 100) return '2.5rem';
   if (value < 1000) return '2rem';
@@ -46,9 +51,14 @@ export const Tile: React.FC<TileProps> = React.memo(({ tile }) => {
     '--wobble-delay': `${wobbleDelay}s`,
   };
 
-  if (previousPosition) {
-    cssVars['--prev-x'] = previousPosition.col;
-    cssVars['--prev-y'] = previousPosition.row;
+  // Calculate merge direction for the incoming bubble
+  if (mergedFrom && previousPosition) {
+    const offsetX = previousPosition.col - position.col;
+    const offsetY = previousPosition.row - position.row;
+    cssVars['--merge-offset-x'] = offsetX;
+    cssVars['--merge-offset-y'] = offsetY;
+    // Get the color of the pre-merged tile (half the current value)
+    cssVars['--merge-bubble-color'] = getTileBackground(value / 2);
   }
 
   const style: React.CSSProperties = {
@@ -60,11 +70,20 @@ export const Tile: React.FC<TileProps> = React.memo(({ tile }) => {
   const classNames = ['tile'];
   if (isNew) classNames.push('tile-new');
   if (mergedFrom) classNames.push('tile-merged');
-  if (previousPosition) classNames.push('tile-moving');
+  if (previousPosition && !mergedFrom) classNames.push('tile-moving');
+
+  // For merged tiles, render the incoming bubble
+  const showMergeBubble = mergedFrom && previousPosition;
 
   return (
     <div className={classNames.join(' ')} style={style}>
-      {value}
+      <span className="tile-value">{value}</span>
+      {showMergeBubble && (
+        <div
+          className="merge-incoming-bubble"
+          style={{ backgroundColor: getTileBackground(value / 2) }}
+        />
+      )}
     </div>
   );
 });

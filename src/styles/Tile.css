@@ -21,6 +21,11 @@
   animation-delay: var(--wobble-delay, 0s);
 }
 
+.tile-value {
+  position: relative;
+  z-index: 5;
+}
+
 /* Highlight/shine effect */
 .tile::before {
   content: '';
@@ -37,6 +42,7 @@
   );
   border-radius: 50%;
   animation: shine-pulse 2s ease-in-out infinite;
+  z-index: 6;
 }
 
 /* Secondary smaller highlight */
@@ -53,24 +59,165 @@
     transparent 70%
   );
   border-radius: 50%;
+  z-index: 6;
 }
 
 .tile-new {
   animation: tile-appear 400ms ease-out forwards, bubble-wobble 6s ease-in-out infinite 400ms;
 }
 
+/* ===== MERGE ANIMATION ===== */
 .tile-merged {
-  animation: bubble-merge 600ms ease-out forwards, bubble-wobble 6s ease-in-out infinite 600ms;
+  /* Main tile is the "stationary" bubble - starts visible */
+  animation: stationary-bubble-merge 500ms ease-out forwards, bubble-wobble 6s ease-in-out infinite 500ms;
   z-index: 20;
+  overflow: visible;
 }
 
-/* Hide default highlights during merge, show merge bubbles instead */
-.tile-merged::before {
-  animation: merge-highlight 600ms ease-out forwards;
+/* Hide number initially during merge, fade in at end */
+.tile-merged .tile-value {
+  animation: merge-value-appear 500ms ease-out forwards;
 }
 
+/* Hide default highlights during merge */
+.tile-merged::before,
 .tile-merged::after {
-  animation: merge-highlight 600ms ease-out forwards;
+  animation: merge-highlight 500ms ease-out forwards;
+}
+
+/* The incoming bubble that slides in and merges */
+.merge-incoming-bubble {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.1),
+    inset 0 4px 8px rgba(255, 255, 255, 0.3);
+  z-index: 4;
+  /* Start from the offset position and slide to center */
+  animation: incoming-bubble-merge 500ms ease-out forwards;
+}
+
+/* Shine on incoming bubble */
+.merge-incoming-bubble::before {
+  content: '';
+  position: absolute;
+  top: 12%;
+  left: 18%;
+  width: 30%;
+  height: 25%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.3) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+}
+
+/* Stationary bubble squishes as incoming bubble arrives */
+@keyframes stationary-bubble-merge {
+  0% {
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1);
+    border-radius: 50%;
+  }
+  /* Squish as bubbles touch */
+  30% {
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(0.85);
+    border-radius: 50%;
+  }
+  /* Expand together - form figure-8 briefly */
+  50% {
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1.1);
+    border-radius: 45% 55% 55% 45% / 50% 50% 50% 50%;
+  }
+  /* Pop into larger single bubble */
+  70% {
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1.2);
+    border-radius: 50%;
+  }
+  /* Settle to final size */
+  100% {
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1);
+    border-radius: 50%;
+  }
+}
+
+/* Incoming bubble slides in from offset position, shrinks into the main bubble */
+@keyframes incoming-bubble-merge {
+  0% {
+    /* Start at offset position (where the tile came from) */
+    transform: translate(
+      calc(var(--merge-offset-x, 0) * (100% + 13.33px)),
+      calc(var(--merge-offset-y, 0) * (100% + 13.33px))
+    ) scale(1);
+    opacity: 1;
+    border-radius: 50%;
+  }
+  30% {
+    /* Move closer, start to squish */
+    transform: translate(
+      calc(var(--merge-offset-x, 0) * (100% + 13.33px) * 0.3),
+      calc(var(--merge-offset-y, 0) * (100% + 13.33px) * 0.3)
+    ) scale(0.9);
+    opacity: 1;
+    border-radius: 50%;
+  }
+  50% {
+    /* Nearly touching, squishing together */
+    transform: translate(0, 0) scale(0.7);
+    opacity: 0.8;
+    border-radius: 50%;
+  }
+  70% {
+    /* Absorbed into main bubble */
+    transform: translate(0, 0) scale(0.3);
+    opacity: 0.4;
+  }
+  100% {
+    /* Fully merged */
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Value fades in after merge */
+@keyframes merge-value-appear {
+  0%, 60% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Fade in highlights after merge completes */
+@keyframes merge-highlight {
+  0%, 70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .tile-moving {
@@ -135,64 +282,6 @@
       calc(var(--tile-x) * (100% + 13.33px) + 5px),
       calc(var(--tile-y) * (100% + 13.33px) + 5px)
     ) scale(1);
-  }
-}
-
-/* Bubble merge - two bubbles becoming one */
-@keyframes bubble-merge {
-  0% {
-    /* Start as figure-8 shape (two bubbles touching) */
-    border-radius: 50% 50% 50% 50% / 25% 25% 25% 25%;
-    transform: translate(
-      calc(var(--tile-x) * (100% + 13.33px) + 5px),
-      calc(var(--tile-y) * (100% + 13.33px) + 5px)
-    ) scaleX(1.4) scaleY(0.7);
-    opacity: 0.8;
-  }
-  30% {
-    /* Pinched "8" shape in the middle */
-    border-radius: 50% 50% 50% 50% / 40% 40% 40% 40%;
-    transform: translate(
-      calc(var(--tile-x) * (100% + 13.33px) + 5px),
-      calc(var(--tile-y) * (100% + 13.33px) + 5px)
-    ) scaleX(1.25) scaleY(0.85);
-    opacity: 0.9;
-  }
-  60% {
-    /* Expanding to single bubble */
-    border-radius: 50%;
-    transform: translate(
-      calc(var(--tile-x) * (100% + 13.33px) + 5px),
-      calc(var(--tile-y) * (100% + 13.33px) + 5px)
-    ) scale(1.15);
-    opacity: 1;
-  }
-  80% {
-    /* Slight overshoot */
-    border-radius: 48% 52% 52% 48% / 52% 48% 48% 52%;
-    transform: translate(
-      calc(var(--tile-x) * (100% + 13.33px) + 5px),
-      calc(var(--tile-y) * (100% + 13.33px) + 5px)
-    ) scale(1.08);
-  }
-  100% {
-    /* Settle to final bubble */
-    border-radius: 50%;
-    transform: translate(
-      calc(var(--tile-x) * (100% + 13.33px) + 5px),
-      calc(var(--tile-y) * (100% + 13.33px) + 5px)
-    ) scale(1);
-    opacity: 1;
-  }
-}
-
-/* Fade in highlights after merge completes */
-@keyframes merge-highlight {
-  0%, 70% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 
