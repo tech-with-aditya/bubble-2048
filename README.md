@@ -1,73 +1,81 @@
-# React + TypeScript + Vite
+# Bubble Merge 2048
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge&logo=github)](https://furic.github.io/bubble-2048/)
+[![GitHub Pages](https://img.shields.io/badge/deployed-github%20pages-blue?style=for-the-badge&logo=github)](https://furic.github.io/bubble-2048/)
+[![Made with React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Global Game Jam 2025](https://img.shields.io/badge/GGJ%202025-Bubble-FF6B6B?style=for-the-badge)](https://globalgamejam.org/)
 
-Currently, two official plugins are available:
+🎮 **[Play Now!](https://furic.github.io/bubble-2048/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A unique twist on the classic 2048 puzzle game, created for Global Game Jam 2025 (theme: "Bubble").
 
-## React Compiler
+## About
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Bubble Merge 2048 combines the familiar 2048 merging mechanics with an innovative bubble physics mechanic. After each move you make, all tiles automatically "bubble up" to the top of the board, creating a second merge opportunity and adding a new strategic dimension to the classic gameplay.
 
-## Expanding the ESLint configuration
+## Gameplay
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **4x4 Grid**: Merge tiles to reach 2048 (and beyond!)
+- **Standard Merging**: Swipe in any direction to slide and merge matching numbers
+- **Bubble Mechanic**: After your move, tiles automatically shift one row upward (with merging), simulating bubbles rising
+- **Ocean Theme**: Beautiful bubble-shaped cells with an aquatic color palette
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Controls
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Keyboard**: Arrow keys or WASD
+- **Mouse**: Click and drag to swipe
+- **Touch**: Swipe gestures on mobile devices
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+- **Framework**: React + TypeScript
+- **Build Tool**: Vite
+- **Styling**: CSS with custom animations
+- **Deployment**: GitHub Pages
+
+## Development
+
+### Setup
+```bash
+npm install              # Install dependencies
+npm run dev             # Start development server (http://localhost:5173)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Build
+```bash
+npm run build           # Build for production
+npm run preview         # Preview production build locally
 ```
+
+## Features
+
+- Multiple input methods (keyboard, mouse, touch)
+- Score tracking with best score persistence
+- Smooth tile animations
+- Win/game over detection
+- Responsive design for desktop and mobile
+
+## Technical Documentation
+
+For developers interested in the implementation details:
+
+- **[Animation System Deep Dive](docs/tile-animation-fix.md)** - How we fixed the tile sliding animations
+- **[Implementation Plan](docs/implementation-plan.md)** - Complete project roadmap and architecture
+
+## Contributing
+
+This project was created for Global Game Jam 2025. Feel free to fork and create your own variations!
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+Created for Global Game Jam 2025
+
+---
+
+**Live Demo**: [https://furic.github.io/bubble-2048/](https://furic.github.io/bubble-2048/)
+
+Made with 💙 for Global Game Jam 2025

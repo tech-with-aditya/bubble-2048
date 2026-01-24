@@ -61,7 +61,12 @@ export function cloneGrid(grid: Grid): Grid {
   return grid.map(row =>
     row.map(cell =>
       cell
-        ? { ...cell, position: { ...cell.position } }
+        ? {
+            id: cell.id,
+            value: cell.value,
+            position: { ...cell.position },
+            // Don't copy animation state - it should be set fresh by move functions
+          }
         : null
     )
   );
@@ -174,11 +179,11 @@ export function moveTiles(grid: Grid, direction: Direction): MoveResult {
         moved = true;
       } else if (farthest.row !== row || farthest.col !== col) {
         const movedTile: Tile = {
-          ...tile,
+          id: tile.id,
+          value: tile.value,
           position: farthest,
           previousPosition: { row, col },
           isNew: false,
-          mergedFrom: undefined,
         };
 
         newGrid[row][col] = null;
@@ -186,12 +191,89 @@ export function moveTiles(grid: Grid, direction: Direction): MoveResult {
         moved = true;
       } else {
         newGrid[row][col] = {
-          ...tile,
-          previousPosition: tile.position,
+          id: tile.id,
+          value: tile.value,
+          position: tile.position,
           isNew: false,
-          mergedFrom: undefined,
         };
       }
+    }
+  }
+
+  return {
+    grid: newGrid,
+    tiles: getTilesFromGrid(newGrid),
+    score,
+    moved,
+  };
+}
+
+export function bubbleShiftUp(grid: Grid): MoveResult {
+  const newGrid = cloneGrid(grid);
+  let score = 0;
+  let moved = false;
+
+  // Process from top to bottom (row 1 to 3, skipping row 0 as it can't move up)
+  for (let row = 1; row < GRID_SIZE; row++) {
+    for (let col = 0; col < GRID_SIZE; col++) {
+      const tile = newGrid[row][col];
+      if (!tile) continue;
+
+      const targetRow = row - 1;
+      const targetTile = newGrid[targetRow][col];
+
+      // Check if we can merge with the tile above
+      if (targetTile && targetTile.value === tile.value) {
+        const mergedValue = tile.value * 2;
+        const mergedTile: Tile = {
+          id: generateTileId(),
+          value: mergedValue,
+          position: { row: targetRow, col },
+          mergedFrom: [tile, targetTile],
+          previousPosition: tile.position,
+        };
+
+        newGrid[row][col] = null;
+        newGrid[targetRow][col] = mergedTile;
+        score += mergedValue;
+        moved = true;
+      }
+      // Check if the space above is empty
+      else if (!targetTile) {
+        const movedTile: Tile = {
+          id: tile.id,
+          value: tile.value,
+          position: { row: targetRow, col },
+          previousPosition: { row, col },
+          isNew: false,
+        };
+
+        newGrid[row][col] = null;
+        newGrid[targetRow][col] = movedTile;
+        moved = true;
+      }
+      // Tile stays in place
+      else {
+        newGrid[row][col] = {
+          id: tile.id,
+          value: tile.value,
+          position: tile.position,
+          isNew: false,
+        };
+      }
+    }
+  }
+
+  // Update tiles in row 0 to clear animation state
+  for (let col = 0; col < GRID_SIZE; col++) {
+    const tile = newGrid[0][col];
+    if (tile && !tile.previousPosition) {
+      newGrid[0][col] = {
+        id: tile.id,
+        value: tile.value,
+        position: tile.position,
+        isNew: false,
+      };
     }
   }
 

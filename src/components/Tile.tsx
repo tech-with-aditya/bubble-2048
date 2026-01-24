@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { Tile as TileType } from '../types/game';
 import '../styles/Tile.css';
 
@@ -41,6 +41,23 @@ function getFontSize(value: number): string {
 
 export const Tile: React.FC<TileProps> = React.memo(({ tile }) => {
   const { value, position, isNew, mergedFrom, previousPosition } = tile;
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  // Determine if this tile should animate - directly from props, no state needed
+  const shouldAnimate = !!(previousPosition && !mergedFrom);
+
+  // Force animation restart by manipulating the DOM directly
+  useEffect(() => {
+    if (shouldAnimate && elementRef.current) {
+      const element = elementRef.current;
+      // Remove the animation class
+      element.classList.remove('tile-moving');
+      // Force a reflow
+      void element.offsetWidth;
+      // Add the animation class back
+      element.classList.add('tile-moving');
+    }
+  }, [previousPosition?.row, previousPosition?.col, shouldAnimate]);
 
   // Generate a consistent delay based on position so tiles wobble out of sync
   const wobbleDelay = ((position.row * 4 + position.col) * 0.2) % 3;
@@ -50,6 +67,14 @@ export const Tile: React.FC<TileProps> = React.memo(({ tile }) => {
     '--tile-y': position.row,
     '--wobble-delay': `${wobbleDelay}s`,
   };
+
+  // Set previous position for slide animation
+  if (previousPosition) {
+    cssVars['--prev-x'] = previousPosition.col;
+    cssVars['--prev-y'] = previousPosition.row;
+    // Add a unique animation name to force restart when positions change
+    cssVars['--anim-key'] = `${previousPosition.row}-${previousPosition.col}-to-${position.row}-${position.col}`;
+  }
 
   // Calculate merge direction for the incoming bubble
   if (mergedFrom && previousPosition) {
@@ -70,13 +95,13 @@ export const Tile: React.FC<TileProps> = React.memo(({ tile }) => {
   const classNames = ['tile'];
   if (isNew) classNames.push('tile-new');
   if (mergedFrom) classNames.push('tile-merged');
-  if (previousPosition && !mergedFrom) classNames.push('tile-moving');
+  if (previousPosition && !mergedFrom && shouldAnimate) classNames.push('tile-moving');
 
   // For merged tiles, render the incoming bubble
   const showMergeBubble = mergedFrom && previousPosition;
 
   return (
-    <div className={classNames.join(' ')} style={style}>
+    <div ref={elementRef} className={classNames.join(' ')} style={style}>
       <span className="tile-value">{value}</span>
       {showMergeBubble && (
         <div

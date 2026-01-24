@@ -4,6 +4,7 @@ import {
   initializeGrid,
   addRandomTile,
   moveTiles,
+  bubbleShiftUp,
   canMove,
   hasWon,
   getTilesFromGrid,
@@ -12,7 +13,7 @@ import {
 } from '../utils/gameLogic';
 
 const BEST_SCORE_KEY = 'bubble2048_best_score';
-const ANIMATION_DURATION = 150;
+const ANIMATION_DURATION = 150; // Match CSS animation duration
 const BUBBLE_DELAY = 100;
 
 function loadBestScore(): number {
@@ -108,7 +109,9 @@ export function useGameState() {
       }));
 
       animationTimeoutRef.current = window.setTimeout(() => {
-        const bubbleResult = moveTiles(playerResult.grid, 'up');
+        // Clear animation state from player move before bubble shift
+        const cleanedGrid = clearAnimationState(playerResult.grid);
+        const bubbleResult = bubbleShiftUp(cleanedGrid);
 
         if (bubbleResult.moved) {
           setGameState(prev => ({

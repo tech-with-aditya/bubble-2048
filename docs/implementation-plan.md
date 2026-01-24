@@ -43,11 +43,12 @@
 - [x] `hasWon(grid)` - Check if 2048 tile exists
 
 ### 2.3 Unique Bubble Mechanic
-- [x] `processBubbleMove(grid)` - Execute the two-step movement:
+- [x] `bubbleShiftUp(grid)` - Shift all tiles one row upward with merging
   1. Player's directional move (LEFT/RIGHT/DOWN/UP)
-  2. Automatic upward move (bubble rising effect)
+  2. Automatic upward shift (one row at a time, not to top)
 - [x] Return combined results (final grid, total score from both moves)
 - [x] Handle animation coordination between the two movements
+- [x] **Fixed animation issues** - see [docs/tile-animation-fix.md](tile-animation-fix.md)
 
 ---
 
@@ -116,11 +117,11 @@
   - Box shadow for depth
 
 ### 4.2 Animations & Transitions
-- [x] Tile movement transitions (smooth slide)
+- [x] Tile movement transitions (smooth slide) - **Fixed with DOM manipulation approach**
 - [x] Tile merge animations (scale up/down, glow)
 - [x] Tile spawn animations (fade in, scale from 0)
+- [x] Bubble rising effect (tiles shift one row upward with animation)
 - [ ] Score increment animations (number fly-up)
-- [ ] Bubble rising effect visual cue
 
 ### 4.3 Responsive Design
 - [x] Mobile-first approach (320px - 768px)
@@ -194,12 +195,16 @@
 - [ ] Verify live site works correctly
 
 ### 7.3 Documentation
-- [ ] Update README with:
-  - Game description and screenshots
-  - How to play instructions
-  - Local development setup
-  - Deployment instructions
+- [x] Update README with:
+  - Game description
+  - Gameplay mechanics
+  - Controls
+  - Tech stack
+  - Development commands
   - Credits (Global Game Jam 2025)
+- [x] Technical documentation:
+  - [docs/tile-animation-fix.md](tile-animation-fix.md) - Animation system deep dive
+  - [docs/implementation-plan.md](implementation-plan.md) - This document
 - [ ] Add LICENSE file
 - [ ] Add CONTRIBUTING.md if accepting contributions
 
@@ -257,7 +262,7 @@
 - [x] Game persists best score
 - [x] Successfully deployed to GitHub Pages
 - [x] Code is clean and well-organized
-- [x] Minimal dependencies used
+- [x] Minimal dependencies usedcu
 
 ---
 

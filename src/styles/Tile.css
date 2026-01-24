@@ -11,12 +11,20 @@
     0 4px 8px rgba(0, 0, 0, 0.2),
     inset 0 -4px 8px rgba(0, 0, 0, 0.1),
     inset 0 4px 8px rgba(255, 255, 255, 0.3);
+  z-index: 10;
+  user-select: none;
+}
+
+/* Only apply base position when NOT animating */
+.tile:not(.tile-moving):not(.tile-merged):not(.tile-new) {
   transform: translate(
     calc(var(--tile-x) * (100% + 13.33px) + 5px),
     calc(var(--tile-y) * (100% + 13.33px) + 5px)
   );
-  z-index: 10;
-  user-select: none;
+}
+
+/* Apply wobble animation only when not moving */
+.tile:not(.tile-moving):not(.tile-merged):not(.tile-new) {
   animation: bubble-wobble 6s ease-in-out infinite;
   animation-delay: var(--wobble-delay, 0s);
 }
@@ -221,7 +229,7 @@
 }
 
 .tile-moving {
-  animation: tile-slide 300ms ease-in-out forwards, bubble-wobble 6s ease-in-out infinite 300ms;
+  animation: tile-slide 150ms ease-out forwards;
 }
 
 /* Wobble deformation - like a bubble in water */
