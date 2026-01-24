@@ -37,9 +37,13 @@ function getFontSize(value: number): string {
 export const Tile: React.FC<TileProps> = React.memo(({ tile }) => {
   const { value, position, isNew, mergedFrom, previousPosition } = tile;
 
-  const cssVars: Record<string, number> = {
+  // Generate a consistent delay based on position so tiles wobble out of sync
+  const wobbleDelay = ((position.row * 4 + position.col) * 0.2) % 3;
+
+  const cssVars: Record<string, number | string> = {
     '--tile-x': position.col,
     '--tile-y': position.row,
+    '--wobble-delay': `${wobbleDelay}s`,
   };
 
   if (previousPosition) {
