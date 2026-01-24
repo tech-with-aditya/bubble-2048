@@ -56,16 +56,25 @@
 }
 
 .tile-new {
-  animation: tile-appear 200ms ease-out forwards, bubble-wobble 3s ease-in-out infinite 200ms;
+  animation: tile-appear 400ms ease-out forwards, bubble-wobble 6s ease-in-out infinite 400ms;
 }
 
 .tile-merged {
-  animation: tile-merge 250ms ease-out forwards, bubble-wobble 3s ease-in-out infinite 250ms;
+  animation: bubble-merge 600ms ease-out forwards, bubble-wobble 6s ease-in-out infinite 600ms;
   z-index: 20;
 }
 
+/* Hide default highlights during merge, show merge bubbles instead */
+.tile-merged::before {
+  animation: merge-highlight 600ms ease-out forwards;
+}
+
+.tile-merged::after {
+  animation: merge-highlight 600ms ease-out forwards;
+}
+
 .tile-moving {
-  animation: tile-slide 150ms ease-in-out forwards, bubble-wobble 3s ease-in-out infinite 150ms;
+  animation: tile-slide 300ms ease-in-out forwards, bubble-wobble 6s ease-in-out infinite 300ms;
 }
 
 /* Wobble deformation - like a bubble in water */
@@ -129,24 +138,61 @@
   }
 }
 
-@keyframes tile-merge {
+/* Bubble merge - two bubbles becoming one */
+@keyframes bubble-merge {
   0% {
+    /* Start as figure-8 shape (two bubbles touching) */
+    border-radius: 50% 50% 50% 50% / 25% 25% 25% 25%;
     transform: translate(
       calc(var(--tile-x) * (100% + 13.33px) + 5px),
       calc(var(--tile-y) * (100% + 13.33px) + 5px)
-    ) scale(1);
+    ) scaleX(1.4) scaleY(0.7);
+    opacity: 0.8;
   }
-  50% {
+  30% {
+    /* Pinched "8" shape in the middle */
+    border-radius: 50% 50% 50% 50% / 40% 40% 40% 40%;
     transform: translate(
       calc(var(--tile-x) * (100% + 13.33px) + 5px),
       calc(var(--tile-y) * (100% + 13.33px) + 5px)
-    ) scale(1.2);
+    ) scaleX(1.25) scaleY(0.85);
+    opacity: 0.9;
+  }
+  60% {
+    /* Expanding to single bubble */
+    border-radius: 50%;
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1.15);
+    opacity: 1;
+  }
+  80% {
+    /* Slight overshoot */
+    border-radius: 48% 52% 52% 48% / 52% 48% 48% 52%;
+    transform: translate(
+      calc(var(--tile-x) * (100% + 13.33px) + 5px),
+      calc(var(--tile-y) * (100% + 13.33px) + 5px)
+    ) scale(1.08);
   }
   100% {
+    /* Settle to final bubble */
+    border-radius: 50%;
     transform: translate(
       calc(var(--tile-x) * (100% + 13.33px) + 5px),
       calc(var(--tile-y) * (100% + 13.33px) + 5px)
     ) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Fade in highlights after merge completes */
+@keyframes merge-highlight {
+  0%, 70% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
