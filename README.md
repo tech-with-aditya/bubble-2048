@@ -11,6 +11,12 @@
 
 A unique twist on the classic 2048 puzzle game, created for Global Game Jam 2025 (theme: "Bubble").
 
+## Gameplay Demo
+
+![Gameplay Demo](public/gameplay.gif)
+
+*Watch the bubble mechanic in action - tiles merge when you swipe, then automatically rise up one row for a second merge opportunity!*
+
 ## About
 
 Bubble Merge 2048 combines the familiar 2048 merging mechanics with an innovative bubble physics mechanic. After each move you make, all tiles automatically "bubble up" to the top of the board, creating a second merge opportunity and adding a new strategic dimension to the classic gameplay.
