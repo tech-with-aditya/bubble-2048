@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Bubble Merge 2048** is a web-based game created at Global Game Jam 2025 with the theme "Bubble". It's a variant of the classic 2048 game with unique mechanics:
+**Bubble 2048** is a web-based game created at Global Game Jam 2025 with the theme "Bubble". It's a variant of the classic 2048 game with unique mechanics:
 
 - **Core gameplay**: 4x4 grid with swipe controls to merge numbers toward 2048
 - **Unique twist**: After each player move, all numbers automatically move up (like bubbles rising), creating a second merge opportunity

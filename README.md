@@ -1,4 +1,4 @@
-# Bubble Merge 2048
+# Bubble 2048
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge&logo=github)](https://furic.github.io/bubble-2048/)
 [![GitHub Pages](https://img.shields.io/badge/deployed-github%20pages-blue?style=for-the-badge&logo=github)](https://furic.github.io/bubble-2048/)
@@ -19,7 +19,7 @@ A unique twist on the classic 2048 puzzle game, created for Global Game Jam 2025
 
 ## About
 
-Bubble Merge 2048 combines the familiar 2048 merging mechanics with an innovative bubble physics mechanic. After each move you make, all tiles automatically "bubble up" to the top of the board, creating a second merge opportunity and adding a new strategic dimension to the classic gameplay.
+Bubble 2048 combines the familiar 2048 merging mechanics with an innovative bubble physics mechanic. After each move you make, all tiles automatically "bubble up" to the top of the board, creating a second merge opportunity and adding a new strategic dimension to the classic gameplay.
 
 ## Gameplay
 

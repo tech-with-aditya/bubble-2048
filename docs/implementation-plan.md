@@ -1,4 +1,4 @@
-# Bubble Merge 2048 - Implementation Plan
+# Bubble 2048 - Implementation Plan
 
 ## Phase 1: Project Setup & Foundation
 
